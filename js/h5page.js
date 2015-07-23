@@ -97,6 +97,7 @@
       if(!(cur==0&&moveto<0||cur==this.pageNum&&moveto>this.pageNum)){
         this.barCon.children[cur].style.opacity=1-percent;
         this.barCon.children[moveto].style.opacity=percent;
+        this.barCon.children[moveto].className="active";
       }
     },
     bindEvent: function () {
