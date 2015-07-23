@@ -1,0 +1,53 @@
+.headerfooter{
+	position: absolute;
+	left: 0;
+	width:100%;
+	height:40px;
+	line-height: 40px;
+	background-color: #ccc;
+	font-size: 1.6rem;
+	color:#333;
+	text-align: center;
+}
+.h5header{
+	top:0;
+}
+.h5footer{
+	bottom:0;
+}
+.content-container{
+	width:100%;
+	margin-top:40px;
+	background-color: #e9e9e9;
+	overflow:hidden ;
+}
+.content{
+	height:100%;
+	overflow: hidden;
+}
+.content-container .h5page{
+	float:left;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.h5page-bar-container{
+	 position:absolute;
+	 left:0;
+	 bottom:40px;
+	 width:100%;
+	 height:12px;
+	 line-height: 12px;
+	text-align :center;
+	 background-color: rgba(0,0,0,0);
+}
+.h5page-bar-container span{
+	display: inline-block;
+	width:12px;
+	height:12px;
+	line-height: 12px;
+	border-radius: 6px;
+	background-color: #ccc;
+}
+.h5page-bar-container span.active{
+	background-color: #CD235C;
+}
