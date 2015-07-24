@@ -9,7 +9,8 @@
   btnsLeft=[],//保存各个btn的left、top值
   btnsDistance= 0,//按钮之间left的差值
   speed=300,
-  curIndex=0;
+  curIndex= 0,//当前所在页面index
+  clicked=false;
   function getLT(obj){
     var lt={
       left:obj.offsetLeft,
@@ -45,19 +46,23 @@
       btnActive.style.left=btnsLeft[ev.curindex].left+'px';//重新赋值btnActive的left值
       h5page.moveTo(btnActive,true,0);//位移归0
       curIndex=ev.curindex;//将当前active index赋值给curIndex
+      clicked=false;
     },speed);
   }});
   for(var i=0;i<barChilds.length;i++){
     btnsLeft.push(getLT(barChilds[i]));
     (function(i){
       barChilds[i].addEventListener('touchend', function () {
-        if(this.className=='active'){return false;}
-        for(var j=0;j<barChilds.length;j++){
+        if(!clicked){
+          clicked=true;
+          if(this.className=='active'){return false;}
+          for(var j=0;j<barChilds.length;j++){
             barChilds[j].className='';
+          }
+          btnActive.style.display='block';
+          h5page.moveTo(btnActive,true,(i-curIndex)*btnsDistance,speed);
+          window['h5page'].moveToIndex(i,curIndex,true);//i是点击的btn  curIndex是上次active btn的index
         }
-        btnActive.style.display='block';
-        h5page.moveTo(btnActive,true,(i-curIndex)*btnsDistance,speed);
-        window['h5page'].moveToIndex(i,curIndex,true);//i是点击的btn  curIndex是上次active btn的index
       })
     })(i)
   }
