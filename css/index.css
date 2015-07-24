@@ -4,3 +4,29 @@
 .page2{
 	background-color: #EB97B4;
 }
+.h5footer a{
+	display: inline-block;
+	width:68px;
+	height:40px;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 10px;
+	color:#333;
+	background-color: #ddd;
+}
+.h5footer a.active{
+	color:#fff;
+	background-color: #EB97B4;
+}
+.active-back{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 68px;
+	height: 40px;
+	border-radius: 10px;
+	background-color: #EB97B4;
+	display: none;
+	opacity: 0.7;
+}
