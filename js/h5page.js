@@ -102,11 +102,11 @@
     },
     bindEvent: function () {
       var startX,startY,startTemp=false,_this=this;
-      for(var i=0;i<this.pages.length;i++){
+      /*for(var i=0;i<this.pages.length;i++){
         this.pages[i].addEventListener('touchstart',touchStart,false);
         this.pages[i].addEventListener('touchmove',touchMove,false);
         this.pages[i].addEventListener('touchend',touchEnd,false);
-      }
+      }*/
       this.pageCon.addEventListener('touchstart',touchStart,false);
       this.pageCon.addEventListener('touchmove',touchMove,false);
       this.pageCon.addEventListener('touchend',touchEnd,false);
@@ -119,24 +119,25 @@
       }
       function touchMove(eve){
         eve.stopPropagation();
-        ev=eve.changedTouches?eve.changedTouches[0]:eve;
+        var ev=eve.changedTouches?eve.changedTouches[0]:eve;
+        var cha=ev.clientX-startX;
         //if(Math.abs(ev.clientY-startY)>=20)startTemp=false;
-        if(startTemp){
-          var cha=ev.clientX-startX;
-          if(Math.abs(cha)>=30){
+        if(startTemp&&Math.abs(ev.clientY-startY)<=30&&Math.abs(cha)>=10){
+          //if(Math.abs(cha)>=30){
           //console.log(_this.header.innerHTML=cha);
             eve.preventDefault();//阻止浏览器的左右滑动退出该页面
             var curindex=_this.setting.curIndex;
             _this.moveTo(_this.pageCon,true,cha-(curindex*_this.client.w));
             _this.barChanging(cha/_this.client.w,curindex,cha>0?curindex-1:curindex+1);
             _this.setting.moving({percent:cha/_this.client.w,curindex:curindex,movetoindex:cha>0?curindex-1:curindex+1});
-          }
+          //}
         }
       }
-      function touchEnd(ev){
-        ev.stopPropagation();
-        ev=ev.changedTouches?ev.changedTouches[0]:ev;
+      function touchEnd(eve){
+        eve.stopPropagation();
+        var ev=eve.changedTouches?eve.changedTouches[0]:eve;
         if(startTemp){
+          eve.preventDefault();//阻止浏览器的左右滑动退出该页面
           var curindex=_this.setting.curIndex;
           startTemp=false;
           if(Math.abs(ev.clientX-startX)>=100){
